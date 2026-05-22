@@ -5,11 +5,21 @@
 #include <algorithm>
 #include <cmath>
 #include <bitset>
+#include <stdexcept>
 
 HyperLogLog::HyperLogLog(int register_bits) : register_bits(register_bits){
     bits_in_hash = sizeof(size_t)*8;
-    assert(register_bits>=4);
-    assert(register_bits<=bits_in_hash);
+
+    if(register_bits<4){
+        throw std::runtime_error(
+            "HLL implementation requires 4 or more register bits"
+            );
+    }
+    if(register_bits>bits_in_hash){
+        throw std::runtime_error(
+            "register_bits exceeds hash size"
+        );
+    }
     registers = (size_t)1<<register_bits;
     sketch = std::vector<int>(registers);
     calculateAlpha();
@@ -63,6 +73,14 @@ long long HyperLogLog::estimateCardinality(){
     }
 
     return llround(HarmonicMean(values)) * alpha * registers;
+}
+
+
+int HyperLogLog::TestleadingZeros(size_t hash_value, int n){
+    return leadingZeros(hash_value,n);
+}
+size_t HyperLogLog::TestgetMsb(size_t hash_value, int n){
+    return getMsb(hash_value,n);
 }
 
 
