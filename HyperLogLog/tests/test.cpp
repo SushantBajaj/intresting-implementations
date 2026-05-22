@@ -61,6 +61,3 @@ int main(){
     test2();
     test3();
 }
-
-
-// todo change assert to throw error
