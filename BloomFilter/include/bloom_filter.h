@@ -16,4 +16,4 @@ class BloomFilter{
     size_t hash_functions_;
     std::vector<bool>bit_array_;
 
-}
+};
