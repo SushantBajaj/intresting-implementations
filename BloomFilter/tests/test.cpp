@@ -31,9 +31,26 @@ void test2(){
     }
 }
 
+void test3(){
+    BloomFilter bf(10000,2);
+    for(int i=0;i<1000;i++){
+        bf.insertHash(i);
+    }
+
+    for(int i=0;i<1000;i++){
+        if(!(bf.containsHash(i))){
+            std::cout<<"[FAIL] No false negative test "<<std::endl;
+            return;
+        }
+    }
+    std::cout<<"[PASS] No false negative test "<<std::endl;
+        
+}
+
 
 int main(){
     test0();
     test1();
     test2();
+    test3();
 }
