@@ -54,7 +54,7 @@ void Benchmark(size_t size,int register_bits){
     auto start = std::chrono::high_resolution_clock::now();
 
     for(auto &i : values){
-        hll.insert(i);
+        hll.insertHash(i);
     }
 
     auto end = std::chrono::high_resolution_clock::now();

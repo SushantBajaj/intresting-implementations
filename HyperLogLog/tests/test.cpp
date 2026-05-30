@@ -40,7 +40,7 @@ void test3(){
     try{
         HyperLogLog hll(5);
         for(int i =0;i<10000;i++){
-            hll.insert(Random64());
+            hll.insertHash(Random64());
         }
         hll.estimateCardinality();
         std::cout << "[PASS] Basic test"<<std::endl;

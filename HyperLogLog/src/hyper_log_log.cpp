@@ -60,7 +60,7 @@ size_t HyperLogLog::getMsb(size_t hash_value, int n){
 }
 
 
-void HyperLogLog::insert(size_t hash_value){
+void HyperLogLog::insertHash(size_t hash_value){
 
     size_t register_id = getMsb(hash_value,register_bits);
     sketch[register_id] = std::max(sketch[register_id], leadingZeros(hash_value,register_bits));
