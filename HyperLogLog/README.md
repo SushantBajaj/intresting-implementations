@@ -229,4 +229,4 @@ Run benchmarks:
 
 The implementation, debugging, testing, and benchmarking were performed manually.
 
-LLMs were used as a discussion and writing aid during development and for drafting this README, but the source code itself was written without AI-generated code stubs or copied implementations.
+LLMs were used for discussion during development and for drafting this README, but all source code was written manually.
