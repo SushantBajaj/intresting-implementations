@@ -18,7 +18,7 @@ class HyperLogLog{
     
     HyperLogLog(int regsiter_bits);
     
-    void insert(size_t hash_value);
+    void insertHash(size_t hash_value);
     long long estimateCardinality();
 
 
