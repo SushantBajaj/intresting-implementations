@@ -5,3 +5,5 @@ gi(x) = h1(x) + i * h2(x)
 gives the same performance as uniform hashing
 but rather than using 2 diffrent hashing functions, for simplicity purpose, we will use the same hashing function twice, with the second one using the output of the first one as input, this would essentially simulate double hashing
 gi (x) = h1(x) + i* h1(h1(x))
+
+while bf is still like 2-5 times faster than uset on lookup, the real diffrence is seen when used as a layer before network call
