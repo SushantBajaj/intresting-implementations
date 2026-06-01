@@ -13,18 +13,18 @@ target_include_directories(bloom_filter_lib PUBLIC
     include
 )
 
-add_executable(test
+add_executable(bloom_filter_test
 tests/test.cpp
 )
 
-target_link_libraries(test PRIVATE
+target_link_libraries(bloom_filter_test PRIVATE
 bloom_filter_lib
 )
 
-add_executable(benchmark
+add_executable(bloom_filter_benchmark
 benchmark/benchmark.cpp
 )
 
-target_link_libraries(benchmark PRIVATE
+target_link_libraries(bloom_filter_benchmark PRIVATE
 bloom_filter_lib
 )
