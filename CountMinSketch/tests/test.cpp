@@ -1,6 +1,7 @@
 #include "count_min_sketch.h"
 #include <limits>
 #include <iostream>
+#include <utility>
 
 void test0(){
     try{
@@ -89,6 +90,124 @@ void test4(){
     }
 }
 
+void test5(){
+    try{
+
+        CountMinSketch cms1(20,5);
+        for(int i =0;i<10;i++){
+            cms1.incrementHash(5);
+        }
+        CountMinSketch cms2{cms1};
+
+        for(int i =0;i<10;i++){
+            cms1.incrementHash(5);
+        }
+
+        if(cms2.estimateUpperBoundOfHash(5)==10 &&
+            cms1.estimateUpperBoundOfHash(5)==20){
+            std::cout<<"[PASS] Copy constructor test "<<std::endl;
+        }else{
+            std::cout<<"[FAIL] Copy constructor test "<<std::endl;
+        }
+        // Memory safety verification is delegated to Address Sanitizer
+
+
+    }catch(...){
+        std::cout<<"[FAIL] Copy constructor test "<<std::endl;
+    }
+
+}
+void test6(){
+    try{
+
+        CountMinSketch cms1(20,5);
+        for(int i =0;i<10;i++){
+            cms1.incrementHash(5);
+        }
+        
+        cms1 = cms1; // to test self assignment
+        if(cms1.estimateUpperBoundOfHash(5)!=10){
+            std::cout<<"[FAIL] Copy assignment operator test "<<std::endl;
+            return;
+        }
+        
+        
+        CountMinSketch cms2(2,3);
+        cms2 = cms1;
+        for(int i =0;i<10;i++){
+            cms1.incrementHash(5);
+        }
+
+        if(cms2.estimateUpperBoundOfHash(5)==10 &&
+            cms1.estimateUpperBoundOfHash(5)==20){
+            std::cout<<"[PASS] Copy assignment operator test "<<std::endl;
+        }else{
+            std::cout<<"[FAIL] Copy assignment operator test "<<std::endl;
+        }
+        // Memory safety verification is delegated to Address Sanitizer
+
+
+    }catch(...){
+        std::cout<<"[FAIL] Copy assignment operator test "<<std::endl;
+    }
+
+}
+void test7(){
+    try{
+
+        CountMinSketch cms1(20,5);
+        for(int i =0;i<10;i++){
+            cms1.incrementHash(5);
+        }
+        CountMinSketch cms2{std::move(cms1)};
+
+        if(cms2.estimateUpperBoundOfHash(5)==10){
+            std::cout<<"[PASS] Move constructor test "<<std::endl;
+        }else{
+            std::cout<<"[FAIL] Move constructor test "<<std::endl;
+        }
+        // Memory safety verification is delegated to Address Sanitizer
+
+    }catch(...){
+        std::cout<<"[FAIL] Move constructor test "<<std::endl;
+    }
+
+}
+
+void test8(){
+    try{
+
+        CountMinSketch cms1(20,5);
+        for(int i =0;i<10;i++){
+            cms1.incrementHash(5);
+        }
+        
+        cms1 = std::move(cms1); // to test self move assignment
+        if(cms1.estimateUpperBoundOfHash(5)!=10){
+            std::cout<<"[FAIL] Move assignment operator test "<<std::endl;
+            return;
+        }
+        
+        
+        CountMinSketch cms2(2,3);
+        cms2 = std::move(cms1);
+        for(int i =0;i<10;i++){
+            cms2.incrementHash(5);
+        }
+
+        if(cms2.estimateUpperBoundOfHash(5)==20){
+            std::cout<<"[PASS] Move assignment operator test "<<std::endl;
+        }else{
+            std::cout<<"[FAIL] Move assignment operator test "<<std::endl;
+        }
+        // Memory safety verification is delegated to Address Sanitizer
+
+
+    }catch(...){
+        std::cout<<"[FAIL] Move assignment operator test "<<std::endl;
+    }
+
+}
 
 
 int main(){
@@ -97,4 +216,8 @@ int main(){
     test2();
     test3();
     test4();
+    test5();
+    test6();
+    test7();
+    test8();
 }
