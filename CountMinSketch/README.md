@@ -4,3 +4,5 @@ because 1st it wont be scalabale, the array will forever be stuck to 64 eles, wh
 will try to use a flat vector rather than a n*m size vector for this, because apparently cpu works better with flat ones
 
 hashing is same as used in bloom filter ie double hashing
+
+trying out uint64_t[] rather than vector, not for performance gains, idts there will be that, but to try out rule of 3/5
