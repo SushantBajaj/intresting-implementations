@@ -19,3 +19,5 @@ add_link_options(
 add_subdirectory(BloomFilter)
 add_subdirectory(CountMinSketch)
 add_subdirectory(HyperLogLog)
+add_subdirectory(RBtree)
+
