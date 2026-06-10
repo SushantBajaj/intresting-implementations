@@ -12,6 +12,7 @@ add_compile_options(
     -g
 )
 
+
 add_link_options(
     -fsanitize=address
 )
@@ -19,3 +20,4 @@ add_link_options(
 add_subdirectory(BloomFilter)
 add_subdirectory(CountMinSketch)
 add_subdirectory(HyperLogLog)
+add_subdirectory(AVLtree)
