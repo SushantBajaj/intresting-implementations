@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <iostream>
+#include <limits>
 #include <ostream>
 #include <stdexcept>
 #include <queue>
@@ -305,25 +306,19 @@ bool AVLtree::verifyHeightDiff(AVLnode* root){
     return (curr && left && right);
 }
 
-bool AVLtree::verifyBST(AVLnode* root){
+bool AVLtree::verifyBST(AVLnode* root, int64_t mx, int64_t mn){
     if(root==nullptr) return true;
-    bool left = verifyBST(root->leftChild_);
-    bool right = verifyBST(root->rightChild_);
+    
+    bool valcheck = (root->value_<mx && root->value_>mn);
+    bool left = verifyBST(root->leftChild_,root->value_,mn);
+    bool right = verifyBST(root->rightChild_,mx,root->value_);
 
-    bool curr {};
-
-    if((root->leftChild_==nullptr || root->value_ > root->leftChild_->value_) &&
-        (root->rightChild_==nullptr || root->value_ < root->rightChild_->value_)){
-        
-        curr = true;
-    }
-
-    return (curr && left && right);
+    return (left && right && valcheck);
 
 }
 
 bool AVLtree::verifyBST(){
-    return verifyBST(this->root_);
+    return verifyBST(this->root_, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min());
 }
 bool AVLtree::verifyHeightDiff(){
     return verifyHeightDiff(this->root_);

@@ -23,7 +23,7 @@ class AVLtree{
     private:
     
 
-    bool verifyBST(AVLnode* root);
+    bool verifyBST(AVLnode* root, int64_t mx, int64_t mn);
     bool verifyHeightDiff(AVLnode* root);
     AVLnode* rotateLeft(AVLnode* node);
     AVLnode* rotateRight(AVLnode* node);
